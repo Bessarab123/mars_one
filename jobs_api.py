@@ -37,6 +37,8 @@ def create_job():
                  ['id', 'job', 'work_size', 'collaborators', 'start_date', 'end_date', 'is_finished', 'team_leader']):
         return jsonify({'error': 'Bad request'})
     session = db_session.create_session()
+    if get_one_jobs(request.json['id']) != {'error': 'Not found'}:
+        return jsonify({'error': 'Id already exists'})
     job = Jobs(
         id=request.json['id'],
         job=request.json['job'],
