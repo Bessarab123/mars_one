@@ -15,7 +15,7 @@ def abort_if_user_not_found(user_id):
 
 def abort_if_user_email_already_exists(email):
     session = db_session.create_session()
-    if session.query(User).find(User.email == email).exists():
+    if session.query(User).filter(User.email == email).first():
         abort(409)
 
 
