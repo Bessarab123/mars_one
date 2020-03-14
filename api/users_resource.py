@@ -39,7 +39,6 @@ class UserResource(Resource):
         session = db_session.create_session()
         user = session.query(User).get(user_id)
         args = parser.parse_args()
-        abort_if_user_email_already_exists(args['email'])
         session = db_session.create_session()
         user.name = args['name']
         user.surname = args['surname']
