@@ -9,10 +9,15 @@ from data.users import User
 import datetime
 import jobs_api
 from requests import get
+from flask_restful import reqparse, abort, Api, Resource
+from api.users_resource import UserResource, UsersListResource
 
 SqlAlchemyBase = dec.declarative_base()
 
 app = Flask(__name__)
+api = Api(app)
+api.add_resource(UsersListResource, '/api/v2/users')
+api.add_resource(UserResource, '/api/v2/user/<int:user_id>')
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 __factory = None
 
