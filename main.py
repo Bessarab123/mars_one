@@ -9,7 +9,7 @@ from data.users import User
 import datetime
 import jobs_api
 from requests import get
-from flask_restful import reqparse, abort, Api, Resource
+from flask_restful import Api
 from api.users_resource import UserResource, UsersListResource
 
 SqlAlchemyBase = dec.declarative_base()
