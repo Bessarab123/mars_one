@@ -1,3 +1,5 @@
+import os
+
 import sqlalchemy as sa
 import sqlalchemy.orm as orm
 from flask import app, Flask, make_response, jsonify
@@ -25,7 +27,8 @@ __factory = None
 def main():
     db_session.global_init("mars_explorer.sqlite")
     app.register_blueprint(jobs_api.blueprint)
-    app.run()
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
 
 
 @app.errorhandler(404)
